@@ -43,8 +43,9 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   # Rubocop is a Ruby code style checking tool
-  gem 'guard', '~> 2.14', '>= 2.14.1'
+  gem 'guard-rspec', require: false
   gem 'guard-rubocop', '~> 1.3'
+  gem 'rspec-rails'
 end
 
 group :development do
@@ -54,6 +55,17 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+end
+
+group :test do
+  gem 'capybara', '>= 2.15', '< 4.0'
+  gem 'poltergeist'
+  # Easy installation and use of chromedriver to run system tests with Chrome
+  gem 'chromedriver-helper'
+  gem 'factory_bot_rails'
+  gem 'shoulda-matchers', '~> 3.1'
+  gem 'launchy'
+
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
