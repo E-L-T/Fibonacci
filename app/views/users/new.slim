@@ -1,9 +1,1 @@
-div id='marketing'
-  div id='sign_up' class='card'
-    h1 Oops
-    h4 class='mt-3' This form is too simple,<br>Let's do some code and pimp it !
-
-    = simple_form_for @user, class:'mt-5' do |f|
-      = f.input :email, label: false, placeholder: 'Email'
-      = f.input :password, label: false, placeholder: 'Password'
-      = f.button :submit, class: 'btn btn-outline-success btn-lg'
+= render 'users/shared/first_step_form'

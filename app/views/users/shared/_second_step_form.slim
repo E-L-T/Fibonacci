@@ -1,0 +1,11 @@
+div id='marketing'
+  div id='sign_up' class='card'
+    h1 Seconde étape du formulaire
+
+    = simple_form_for @user, class:'mt-5' do |f|
+      = f.input :pdl, label: false, placeholder: 'Pdl'
+      = f.button :submit, class: 'btn btn-outline-success btn-lg'
+
+    = link_to(go_back_path @user) do 
+      'Go back
+    end

@@ -18,7 +18,7 @@ class User < ApplicationRecord
       transitions from: :submitted, to: :completed
     end
 
-    event :redefine do
+    event :undefine do
       transitions from: :submitted, to: :undefined
     end
   end

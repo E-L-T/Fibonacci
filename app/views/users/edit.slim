@@ -1,7 +1,4 @@
-div id='marketing'
-  div id='sign_up' class='card'
-    h1 Seconde étape du formulaire
-
-    = simple_form_for @user, class:'mt-5' do |f|
-      = f.input :pdl, label: false, placeholder: 'Pdl'
-      = f.button :submit, class: 'btn btn-outline-success btn-lg'
+- if @user.state == 'submitted'
+  = render 'users/shared/second_step_form'
+- elsif @user.state == 'undefined'
+  = render 'users/shared/first_step_form'

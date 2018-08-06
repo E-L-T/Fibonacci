@@ -22,5 +22,6 @@ Rails.application.routes.draw do
       resource :password, only: [:create, :edit, :update]
     end
     get '/sign_up' => :new, as: :sign_up
+    get 'users/go_back/:id', to: 'users#go_back', as: :go_back
   end
 end
