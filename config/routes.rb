@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   end
 
   controller :users do
-    resources :users, only: [:create] do
+    resources :users, only: [:create, :edit, :update] do
       resource :password, only: [:create, :edit, :update]
     end
     get '/sign_up' => :new, as: :sign_up

@@ -2,6 +2,7 @@ class User < ApplicationRecord
   include AASM
   include Clearance::User
   validates_presence_of :email, :password, if: -> { state == 'submitted' }
+  validates_presence_of :pdl, if: -> { state == 'completed' }
   aasm column: 'state' do
   end
 
