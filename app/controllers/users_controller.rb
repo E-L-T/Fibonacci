@@ -1,25 +1,24 @@
 class UsersController < Clearance::UsersController
+  before_action :set_user, only: [:edit, :update]
+
+  def new
+    @user = User.new
+  end
+
   def create
-    @user = user_from_params
+    @user = User.new(user_params)
     @user.submit
     if @user.save
       sign_in @user
       redirect_to edit_user_path @user
-      # redirect_back_or url_after_create
     else
       render :new
     end
   end
 
-  def edit
-    @user = User.find(params[:id])
-  end
-
   def update
-    @user = User.find(params[:id])
     @user.complete
-    if @user.update(pdl: permitted_params[:pdl])
-      flash[:success] = 'User was successfully created.'
+    if @user.update(pdl: user_params[:pdl])
       redirect_back_or url_after_create
     else
       render :edit
@@ -28,7 +27,11 @@ class UsersController < Clearance::UsersController
 
   private
 
-    def permitted_params
+    def user_params
       params.require(:user).permit(:email, :password, :pdl)
+    end
+
+    def set_user
+      @user = User.find(params[:id])
     end
 end
