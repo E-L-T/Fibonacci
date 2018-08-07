@@ -23,24 +23,12 @@ class UsersController < Clearance::UsersController
   end
 
   def update
-    if @user.state == 'submitted'
-      @user.complete
-      if @user.update(pdl: user_params[:pdl])
-        redirect_back_or url_after_create
-        return
-      else
-        render :edit
-      end
+    if @user.submitted?
+      submit_and_update
     end
 
-    if @user.state == 'undefined'
-      @user.submit
-      if @user.update(user_params)
-        redirect_to edit_user_path @user
-        return
-      else
-        render :edit
-      end
+    if @user.undefined?
+      complete_and_update
     end
   end
 
@@ -52,5 +40,25 @@ class UsersController < Clearance::UsersController
 
     def set_user
       @user = User.find(params[:id])
+    end
+
+    def submit_and_update
+      @user.complete
+      if @user.update(pdl: user_params[:pdl])
+        redirect_back_or url_after_create
+        return
+      else
+        render :edit
+      end
+    end
+
+    def complete_and_update
+      @user.submit
+      if @user.update(user_params)
+        redirect_to edit_user_path @user
+        return
+      else
+        render :edit
+      end
     end
 end
