@@ -4,6 +4,12 @@ div id='marketing'
 
     = simple_form_for @user, class:'mt-5' do |f|
       = f.input :pdl, label: false, placeholder: 'Pdl'
+      = f.label :situation, 'I move in'
+      = f.radio_button :situation, :move_in
+      = f.label :situation, 'I built a new flat house'
+      = f.radio_button :situation, :new_house
+      = f.label :situation, 'I need a temporary access'
+      = f.radio_button :situation, :temporary_access
       = f.button :submit, class: 'btn btn-outline-success btn-lg'
 
     = link_to(go_back_path @user) do 

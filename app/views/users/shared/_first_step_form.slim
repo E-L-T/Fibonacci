@@ -3,6 +3,12 @@ div id='marketing'
     h4 class='mt-3' Sign in informations
 
     = simple_form_for @user, class:'mt-5' do |f|
+      = f.input :first_name, label: false, placeholder: 'First name'
+      = f.input :last_name, label: false, placeholder: 'Last name'
+      = f.input :street_number, label: false, placeholder: 'Street number'
+      = f.input :street_name, label: false, placeholder: 'Street name'
+      = f.input :zip_code, label: false, placeholder: 'Zip code'
+      = f.input :city, label: false, placeholder: 'City'
       = f.input :email, label: false, placeholder: 'Email'
       = f.input :password, label: false, placeholder: 'Password'
       = f.button :submit, class: 'btn btn-outline-success btn-lg'

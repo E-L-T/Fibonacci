@@ -17,47 +17,48 @@ class UsersController < Clearance::UsersController
   end
 
   def go_back
-    @user.undefine
-    @user.save
-    redirect_to edit_user_path @user
+    @user.back_to_undefined
+    if @user.save
+      redirect_to edit_user_path @user
+    else
+      @user.submit
+      render :edit
+    end
   end
 
   def update
-    if @user.submitted?
-      submit_and_update
-    end
-
-    if @user.undefined?
-      complete_and_update
-    end
+    complete_and_update if @user.submitted?
+    submit_and_update if @user.undefined?
   end
 
   private
 
     def user_params
-      params.require(:user).permit(:email, :password, :pdl)
+      params.require(:user).permit(:first_name, :last_name, :street_number, :street_name, :zip_code, :city, :email, :password, :pdl, :situation)
     end
 
     def set_user
       @user = User.find(params[:id])
     end
 
-    def submit_and_update
+    def complete_and_update
       @user.complete
-      if @user.update(pdl: user_params[:pdl])
+      if @user.update(pdl: user_params[:pdl], situation: user_params[:situation])
         redirect_back_or url_after_create
         return
       else
+        @user.back_to_submitted
         render :edit
       end
     end
 
-    def complete_and_update
+    def submit_and_update
       @user.submit
       if @user.update(user_params)
         redirect_to edit_user_path @user
         return
       else
+        @user.back_to_undefined
         render :edit
       end
     end
