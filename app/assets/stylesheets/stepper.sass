@@ -1,0 +1,48 @@
+.md-stepper-horizontal
+  display: table
+  width: 40%
+  margin: 0 auto
+  .md-step
+    display: table-cell
+    position: relative
+    padding: 10px
+    .md-step-circle
+      width: 30px
+      height: 30px
+      margin: 0 auto
+      background-color: white
+      border-radius: 50%
+      text-align: center
+      line-height: 30px
+      font-size: 16px
+      font-weight: 600
+      color: black
+  .md-step
+    &.active .md-step-circle
+      background-color: black
+      color: white    
+    &.md-step-circle
+      *
+        display: none
+      -moz-transform: scaleX(-1)
+      -o-transform: scaleX(-1)
+      -webkit-transform: scaleX(-1)
+      transform: scaleX(-1)
+    .md-step-title
+      margin-top: 6px
+    .md-step-bar-left
+      position: absolute
+      top: 24px
+      height: 1px
+      left: 0
+      right: 50%
+      margin-right: 20px
+      border-top: 1px solid #DDDDDD
+    .md-step-bar-right
+      position: absolute
+      top: 24px
+      height: 1px
+      border-top: 1px solid #DDDDDD
+      right: 0
+      left: 50%
+      margin-left: 20px

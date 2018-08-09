@@ -1,0 +1,34 @@
+div class="md-stepper-horizontal black"
+  - if @user.undefined?
+    div class="md-step active"
+      div class="md-step-circle"
+        span 1
+      div class="md-step-title"
+        'Step 1
+      div class="md-step-bar-left"
+      div class="md-step-bar-right"
+  - else
+    div class="md-step"
+      div class="md-step-circle"
+        span 1
+      div class="md-step-title"
+        'Step 1
+      div class="md-step-bar-left"
+      div class="md-step-bar-right"
+
+  - if @user.submitted?
+    div class="md-step active"
+      div class="md-step-circle"
+        span 2
+      div class="md-step-title"
+        'Step 2
+      div class="md-step-bar-left"
+      div class="md-step-bar-right"
+  - else
+    div class="md-step"
+      div class="md-step-circle"
+        span 2
+      div class="md-step-title"
+        'Step 2
+      div class="md-step-bar-left"
+      div class="md-step-bar-right"

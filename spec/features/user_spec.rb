@@ -13,7 +13,7 @@ describe 'User', type: :feature do
       fill_in :user_street_name, with: 'Grande rue'
       fill_in :user_zip_code, with: '60210'
       fill_in :user_city, with: 'Sérifontaine'
-      click_on 'Sign up'
+      click_on 'Go to next step'
     end.to change { User.count }.by(+1)
 
     expect(current_path).to eq edit_user_path User.last
@@ -22,11 +22,11 @@ describe 'User', type: :feature do
     click_on 'Go back'
     fill_in :user_email, with: 'email@test.fr'
     fill_in :user_password, with: 'password_secret'
-    click_on 'Update User'
+    click_on 'Go to next step'
 
     fill_in :user_pdl, with: 'Point central'
     choose :user_situation_move_in
-    click_on 'Update User'
+    click_on 'Submit'
     expect(User.last).to have_state(:completed)
     expect(User.last.email).to eq 'email@test.fr'
     expect(current_path).to eq '/'

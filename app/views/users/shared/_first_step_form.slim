@@ -1,14 +1,24 @@
 div id='marketing'
-  div id='sign_up' class='card'
-    h4 class='mt-3' Sign in informations
-
+  div id='sign_up' class='card col-md-5 mt-5 mb-5'
+    = render 'users/shared/stepper'
+    h4 class='mt-3' Personal informations
     = simple_form_for @user, class:'mt-5' do |f|
-      = f.input :first_name, label: false, placeholder: 'First name'
-      = f.input :last_name, label: false, placeholder: 'Last name'
-      = f.input :street_number, label: false, placeholder: 'Street number'
-      = f.input :street_name, label: false, placeholder: 'Street name'
-      = f.input :zip_code, label: false, placeholder: 'Zip code'
-      = f.input :city, label: false, placeholder: 'City'
-      = f.input :email, label: false, placeholder: 'Email'
-      = f.input :password, label: false, placeholder: 'Password'
-      = f.button :submit, class: 'btn btn-outline-success btn-lg'
+      = f.input :first_name, placeholder: 'First name'
+      = f.input :last_name, placeholder: 'Last name'
+      hr
+      h4 class='mt-3' Adress
+      div class='form-row'
+        div class='form-group col-md-4'
+          = f.input :street_number, placeholder: 'Street number'
+        div class='form-group col-md-8'
+          = f.input :street_name, placeholder: 'Street name'
+      div class='form-row'
+        div class='form-group col-md-4'
+          = f.input :zip_code, placeholder: 'Zip code'
+        div class='form-group col-md-8'
+          = f.input :city, placeholder: 'City'
+      hr
+      h4 class='mt-3' Sign in informations
+      = f.input :email, placeholder: 'Email'
+      = f.input :password, placeholder: 'Password'
+      = f.button :submit, 'Go to next step', class: 'btn btn-outline-success btn-lg'
