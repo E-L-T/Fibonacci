@@ -12,6 +12,7 @@ class UsersController < Clearance::UsersController
       sign_in @user
       redirect_to edit_user_path @user
     else
+      @user.back_to_undefined
       render :new
     end
   end
