@@ -45,6 +45,7 @@ class UsersController < Clearance::UsersController
     def complete_and_update
       @user.complete
       if @user.update(pdl: user_params[:pdl], situation: user_params[:situation])
+        UserMailer.welcome_email.deliver_later
         redirect_back_or url_after_create
         return
       else
