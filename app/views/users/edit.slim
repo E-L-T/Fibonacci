@@ -1,4 +1,4 @@
-- if @user.state == 'submitted'
+- if @user.state == 'half_completed'
   = render 'users/shared/second_step_form'
-- elsif @user.state == 'undefined'
+- elsif @user.state == 'uncompleted'
   = render 'users/shared/first_step_form'

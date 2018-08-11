@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe User, type: :model do
   context 'In form first step' do
-    before { subject.state = :submitted }
+    before { subject.state = :half_completed }
     it { should validate_presence_of :email }
     it { should validate_presence_of :password }
     it { should validate_presence_of :first_name }

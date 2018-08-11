@@ -1,5 +1,5 @@
 div class="md-stepper-horizontal black"
-  - if @user.undefined?
+  - if @user.uncompleted?
     div class="md-step active"
       div class="md-step-circle"
         span 1
@@ -16,7 +16,7 @@ div class="md-stepper-horizontal black"
       div class="md-step-bar-left"
       div class="md-step-bar-right"
 
-  - if @user.submitted?
+  - if @user.half_completed?
     div class="md-step active"
       div class="md-step-circle"
         span 2

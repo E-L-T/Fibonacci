@@ -17,8 +17,8 @@ describe 'User', type: :feature do
     end.to change { User.count }.by(+1)
 
     expect(current_path).to eq edit_user_path User.last
-    expect(User.last).to have_state(:submitted)
-    expect(User.last).to transition_from(:submitted).to(:completed).on_event(:complete)
+    expect(User.last).to have_state(:half_completed)
+    expect(User.last).to transition_from(:half_completed).to(:completed).on_event(:complete)
     click_on 'Go back'
     fill_in :user_email, with: 'email@test.fr'
     fill_in :user_password, with: 'password_secret'

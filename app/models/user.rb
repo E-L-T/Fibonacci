@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   include AASM
   include Clearance::User
-  validates_presence_of :email, :password, :first_name, :last_name, :street_number, :street_name, :zip_code, :city, if: -> { state == 'submitted' }
+  validates_presence_of :email, :password, :first_name, :last_name, :street_number, :street_name, :zip_code, :city, if: -> { state == 'half_completed' }
   validates_presence_of :pdl, :situation, if: -> { state == 'completed' }
   enum situation: [ :move_in, :new_house, :temporary_access ]
 
@@ -9,23 +9,23 @@ class User < ApplicationRecord
   end
 
   aasm do
-    state :undefined, initial: true
-    state :submitted, :completed
+    state :uncompleted, initial: true
+    state :half_completed, :completed
 
-    event :submit do
-      transitions from: :undefined, to: :submitted
+    event :half_complete do
+      transitions from: :uncompleted, to: :half_completed
     end
 
     event :complete do
-      transitions from: :submitted, to: :completed
+      transitions from: :half_completed, to: :completed
     end
 
-    event :back_to_submitted do
-      transitions from: :completed, to: :submitted
+    event :back_to_half_completed do
+      transitions from: :completed, to: :half_completed
     end
 
-    event :back_to_undefined do
-      transitions from: :submitted, to: :undefined
+    event :back_to_uncompleted do
+      transitions from: :half_completed, to: :uncompleted
     end
   end
 end
